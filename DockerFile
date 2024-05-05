@@ -1,0 +1,11 @@
+FROM nodejs:13-alpine
+
+RUN mkdir -p /usr/app
+
+COPY package.json package*.json yarn.lock /usr/app/
+COPY app/* /usr/app/
+
+WORKDIR /usr/app/
+
+RUN yarn
+CMD [ "yarn", "main.bundle.js" ]
